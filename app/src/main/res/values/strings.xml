@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">z1</string>
+    <string name="app_name">БТПИТ</string>
+    <string name="app_text">БТПИТ!</string>
+    <string name="app_study_text">Мы учимся в БТПИТ!</string>
 </resources>
