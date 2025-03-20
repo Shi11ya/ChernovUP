@@ -1,10 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity2">
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/design_default_color_background">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Пост -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:elevation="2dp"
+        android:padding="8dp"
+        android:layout_marginBottom="16dp">
+
+        <!-- Автор поста -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:id="@+id/avatar"
+                android:layout_width="71dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/logo" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+            android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/author_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Новости. Борисоглебский техникум промышленных и информационных технологий"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/publication_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="19 марта в 13:36"
+                android:textSize="12sp"
+                android:textColor="@android:color/darker_gray"
+                android:layout_marginTop="4dp"/>
+        </LinearLayout>
+
+
+        <ImageButton
+            android:id="@+id/more_options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/points" />
+    </LinearLayout>
+
+    <!-- Описание поста -->
+    <TextView
+        android:id="@+id/post_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:padding="4dp"
+        android:background="@color/design_default_color_background"
+        android:text="ЭСТАФЕТА ПАМЯТИ «ВО СЛАВУ ПОБЕДЫ!»
+\n\n17 марта, активисты «Движения Первых», волонтеры
+«Победы» и активисты ВПК «Соколы России» ГБПОУ ВО «БТПИТ»
+совместно с советниками директора по воспитанию
+и взаимодействию с детскими общественными объединениями
+С.В. Алехиной и Е.В. Сахаровой приняли участие в региональном
+проекте «Эстафета Памяти «Во славу Победы!»
+на мемориальном комплексе Памяти и Славы у Вечного огня."
+        android:textSize="12sp"
+        android:textColor="@android:color/black"/>
+
+        <ImageView
+            android:id="@+id/post_image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+        android:layout_marginBottom="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/krasavciki" />
+
+    <!-- Базовый функционал -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="8dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginEnd="20dp">
+
+            <ImageButton
+                android:id="@+id/like_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:src="@drawable/like" />
+            <TextView
+                android:id="@+id/like_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="123"
+                android:textSize="12sp"
+                android:textColor="@android:color/black"
+                android:layout_marginStart="8dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginEnd="26dp">
+
+            <ImageButton
+                android:id="@+id/comment_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:src="@drawable/comments" />
+            <TextView
+                android:id="@+id/comment_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="45"
+                android:textSize="12sp"
+                android:textColor="@android:color/black"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginEnd="20dp">
+
+            <ImageButton
+                android:id="@+id/share_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:src="@drawable/repost" />
+            <TextView
+                android:id="@+id/share_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="67"
+                android:textSize="12sp"
+                android:textColor="@android:color/black"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:gravity="end">
+
+            <ImageButton
+                android:id="@+id/view_count_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:src="@drawable/eye" />
+
+            <TextView
+                android:id="@+id/view_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1000"
+                android:textSize="12sp"
+                android:textColor="@android:color/black"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
+    </LinearLayout>
