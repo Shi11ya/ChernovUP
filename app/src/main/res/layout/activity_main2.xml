@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
     android:background="@color/design_default_color_background">
 
-    <!-- Пост -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +18,7 @@
         android:padding="8dp"
         android:layout_marginBottom="16dp">
 
-        <!-- Автор поста -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,6 +30,7 @@
                 android:layout_width="71dp"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="8dp"
+                android:contentDescription="TODO"
                 android:src="@drawable/logo" />
 
             <LinearLayout
@@ -43,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:text="Новости. Борисоглебский техникум промышленных и информационных технологий"
                     android:textColor="@android:color/black"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     android:textStyle="normal" />
 
             <TextView
@@ -51,21 +53,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="19 марта в 13:36"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:textColor="@android:color/darker_gray"
                 android:layout_marginTop="4dp"/>
         </LinearLayout>
 
 
-        <ImageButton
-            android:id="@+id/more_options"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:src="@drawable/points" />
+            <ImageButton
+                android:id="@+id/more_options"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:background="?attr/selectableItemBackground"
+                android:src="@drawable/points"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
     </LinearLayout>
 
-    <!-- Описание поста -->
+
     <TextView
         android:id="@+id/post_description"
         android:layout_width="match_parent"
@@ -81,7 +84,7 @@
 С.В. Алехиной и Е.В. Сахаровой приняли участие в региональном
 проекте «Эстафета Памяти «Во славу Победы!»
 на мемориальном комплексе Памяти и Славы у Вечного огня."
-        android:textSize="12sp"
+        android:textSize="14sp"
         android:textColor="@android:color/black"/>
 
         <ImageView
@@ -92,10 +95,11 @@
         android:scaleType="centerCrop"
         android:src="@drawable/krasavciki" />
 
-    <!-- Базовый функционал -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:baselineAligned="false"
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:layout_marginTop="8dp">
@@ -111,13 +115,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackground"
-                android:src="@drawable/like" />
+                android:src="@drawable/like"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
             <TextView
                 android:id="@+id/like_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="123"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:textColor="@android:color/black"
                 android:layout_marginStart="8dp"/>
 
@@ -134,13 +139,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackground"
-                android:src="@drawable/comments" />
+                android:src="@drawable/comments"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
             <TextView
                 android:id="@+id/comment_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="45"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:textColor="@android:color/black"
                 android:layout_marginStart="8dp"/>
         </LinearLayout>
@@ -156,13 +162,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackground"
-                android:src="@drawable/repost" />
+                android:src="@drawable/repost"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
             <TextView
                 android:id="@+id/share_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="67"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:textColor="@android:color/black"
                 android:layout_marginStart="8dp"/>
         </LinearLayout>
@@ -180,14 +187,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackground"
-                android:src="@drawable/eye" />
+                android:src="@drawable/eye"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <TextView
                 android:id="@+id/view_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1000"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:textColor="@android:color/black"
                 android:layout_marginStart="8dp"/>
         </LinearLayout>
