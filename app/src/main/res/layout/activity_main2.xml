@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/design_default_color_background">
+    android:background="#E3F2FD">
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,9 +13,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="@color/design_default_color_background">
+    android:background="#E3F2FD">
     <!-- 1пост -->
     <LinearLayout
+        android:id="@+id/post_layout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
@@ -212,6 +213,7 @@
 
     <!-- 2пост -->
     <LinearLayout
+        android:id="@+id/post_layout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
@@ -403,6 +405,7 @@
 
     <!-- 3пост -->
     <LinearLayout
+        android:id="@+id/post_layout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"

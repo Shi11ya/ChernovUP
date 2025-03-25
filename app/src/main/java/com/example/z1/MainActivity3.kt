@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.EditText
+import android.app.AlertDialog
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -65,6 +68,8 @@ class PostsAdapter : RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
         private var shareCount = 28
         private var viewCount = 892
         private var isLiked = false
+        private var isTextExpanded = false
+        private var fullText = ""
 
         private lateinit var likeButton: ImageButton
         private lateinit var likeCountTextView: TextView
@@ -73,8 +78,8 @@ class PostsAdapter : RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
         private lateinit var viewCountTextView: TextView
         private lateinit var commentCountTextView: TextView
         private lateinit var text: TextView
-        private var isTextExpanded = false
         private lateinit var showMoreText: TextView
+        private lateinit var moreOptionsButton: ImageButton
 
         fun bind(postNumber: Int) {
             // Инициализация views
@@ -86,6 +91,7 @@ class PostsAdapter : RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
             viewCountTextView = itemView.findViewById(R.id.view_count)
             text = itemView.findViewById(R.id.post_description)
             showMoreText = itemView.findViewById(R.id.show_more_text)
+            moreOptionsButton = itemView.findViewById(R.id.more_options)
 
             // Установка значений счетчиков в зависимости от номера поста
             when (postNumber) {
@@ -94,24 +100,21 @@ class PostsAdapter : RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
                     commentCount = 43
                     shareCount = 28
                     viewCount = 892
+                    fullText = "ЭСТАФЕТА ПАМЯТИ «ВО СЛАВУ ПОБЕДЫ!»\n\n17 марта, активисты «Движения Первых», волонтеры «Победы» и активисты ВПК «Соколы России» ГБПОУ ВО «БТПИТ» совместно с советниками директора по воспитанию и взаимодействию с детскими общественными объединениями С.В. Алехиной и Е.В. Сахаровой.\nПриняли участие в региональном проекте «Эстафета Памяти «Во славу Победы!» на мемориальном комплексе Памяти и Славы у Вечного огня."
                 }
                 2 -> {
                     likeCount = 324
                     commentCount = 87
                     shareCount = 65
                     viewCount = 2345
+                    fullText = "24 марта - день борьбы с туберкулезом.\n\nВ преддверии дня борьбы с туберкулезом активисты волонтерского объединения \"Лучик света\" организовали и провели среди студентов техникума занятие на тему: «Просветись!». Обучающимся предлагалось выполнить упражнения «История возникновения туберкулеза», «Что вызывает туберкулёз», «Какие основные симптомы туберкулеза», «Миф или реальность».\nПо окончании занятия студенты пришли к выводу о том, что здоровый образ жизни, своевременное прохождение профилактических медицинских осмотров, а при необходимости своевременное и полноценное лечение является гарантом здоровья."
                 }
                 3 -> {
                     likeCount = 567
                     commentCount = 234
                     shareCount = 123
                     viewCount = 4567
-                }
-                else -> {
-                    likeCount = 156
-                    commentCount = 43
-                    shareCount = 28
-                    viewCount = 892
+                    fullText = "9 марта 2025 года для студентов Борисоглебского техникума промышленных и информационных технологий была организованна и проведена профилактическая встреча с сотрудником ОГИБДД ОМВД России по г. Борисоглебск Семеновой О.А.\n\nВ ходе профилактической беседы инспектор по пропаганде ОГИБДД ОМВД России по г. Борисоглебск Семенова Ольга Александровна рассказала студентам об основных причинах дорожно-транспортных происшествий, в том числе с участием несовершеннолетних. Предупредила о недопустимости нарушений Правил дорожного движения, об административной ответственности несовершеннолетних за нарушение ПДД, управление транспортным средством водителями, не имеющим права управления, а также в состоянии алкогольного или наркотического опьянения.\nСтуденты активно задавали вопросы, высказывали своё мнение, интересовались действующим законодательством."
                 }
             }
 
@@ -142,12 +145,7 @@ class PostsAdapter : RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
             })
 
             // Установка текста поста
-            text.text = when (postNumber) {
-                1 -> "ЭСТАФЕТА ПАМЯТИ «ВО СЛАВУ ПОБЕДЫ!»\n\n17 марта, активисты «Движения Первых», волонтеры «Победы» и активисты ВПК «Соколы России» ГБПОУ ВО «БТПИТ» совместно с советниками директора по воспитанию и взаимодействию с детскими общественными объединениями С.В. Алехиной и Е.В. Сахаровой."
-                2 -> "24 марта - день борьбы с туберкулезом.\n\nВ преддверии дня борьбы с туберкулезом активисты волонтерского объединения \"Лучик света\" организовали и провели среди студентов техникума занятие на тему: «Просветись!». Обучающимся предлагалось выполнить упражнения «История возникновения туберкулеза», «Что вызывает туберкулёз», «Какие основные симптомы туберкулеза», «Миф или реальность»."
-                3 -> "9 марта 2025 года для студентов Борисоглебского техникума промышленных и информационных технологий была организованна и проведена профилактическая встреча с сотрудником ОГИБДД ОМВД России по г. Борисоглебск Семеновой О.А.\n\nВ ходе профилактической беседы инспектор по пропаганде ОГИБДД ОМВД России по г. Борисоглебск Семенова Ольга Александровна рассказала студентам об основных причинах дорожно-транспортных происшествий, в том числе с участием несовершеннолетних. Предупредила о недопустимости нарушений Правил дорожного движения, об административной ответственности несовершеннолетних за нарушение ПДД, управление транспортным средством водителями, не имеющим права управления, а также в состоянии алкогольного или наркотического опьянения."
-                else -> "ЭСТАФЕТА ПАМЯТИ «ВО СЛАВУ ПОБЕДЫ!»\n\n17 марта, активисты «Движения Первых», волонтеры «Победы» и активисты ВПК «Соколы России» ГБПОУ ВО «БТПИТ» совместно с советниками директора по воспитанию и взаимодействию с детскими общественными объединениями С.В. Алехиной и Е.В. Сахаровой."
-            }
+            text.text = if (isTextExpanded) fullText else fullText.split("\n")[0]
 
             // Обработчики кликов
             likeButton.setOnClickListener {
@@ -161,29 +159,92 @@ class PostsAdapter : RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
 
             showMoreText.setOnClickListener {
                 if (!isTextExpanded) {
-                    text.text = text.text.toString() + "\n" + when (postNumber) {
-                        1 -> "Приняли участие в региональном\nпроекте «Эстафета Памяти «Во славу Победы!»\nна мемориальном комплексе Памяти и Славы у Вечного огня."
-                        2 -> "По окончании занятия студенты пришли к выводу о том, что здоровый образ жизни, своевременное прохождение профилактических медицинских осмотров, а при необходимости своевременное и полноценное лечение является гарантом здоровья."
-                        3 -> "Студенты активно задавали вопросы, высказывали своё мнение, интересовались действующим законодательством."
-                        else -> "Приняли участие в региональном\nпроекте «Эстафета Памяти «Во славу Победы!»\nна мемориальном комплексе Памяти и Славы у Вечного огня."
-                    }
+                    text.text = fullText
                     showMoreText.text = "Скрыть"
                     showMoreText.setTextColor(itemView.resources.getColor(android.R.color.holo_blue_dark))
                     isTextExpanded = true
                 } else {
-                    text.text = when (postNumber) {
-                        1 -> "ЭСТАФЕТА ПАМЯТИ «ВО СЛАВУ ПОБЕДЫ!»\n\n17 марта, активисты «Движения Первых», волонтеры «Победы» и активисты ВПК «Соколы России» ГБПОУ ВО «БТПИТ» совместно с советниками директора по воспитанию и взаимодействию с детскими общественными объединениями С.В. Алехиной и Е.В. Сахаровой."
-                        2 -> "24 марта - день борьбы с туберкулезом.\n\nВ преддверии дня борьбы с туберкулезом активисты волонтерского объединения \"Лучик света\" организовали и провели среди студентов техникума занятие на тему: «Просветись!». Обучающимся предлагалось выполнить упражнения «История возникновения туберкулеза», «Что вызывает туберкулёз», «Какие основные симптомы туберкулеза», «Миф или реальность»."
-                        3 -> "9 марта 2025 года для студентов Борисоглебского техникума промышленных и информационных технологий была организованна и проведена профилактическая встреча с сотрудником ОГИБДД ОМВД России по г. Борисоглебск Семеновой О.А.\n\nВ ходе профилактической беседы инспектор по пропаганде ОГИБДД ОМВД России по г. Борисоглебск Семенова Ольга Александровна рассказала студентам об основных причинах дорожно-транспортных происшествий, в том числе с участием несовершеннолетних. Предупредила о недопустимости нарушений Правил дорожного движения, об административной ответственности несовершеннолетних за нарушение ПДД, управление транспортным средством водителями, не имеющим права управления, а также в состоянии алкогольного или наркотического опьянения."
-                        else -> "ЭСТАФЕТА ПАМЯТИ «ВО СЛАВУ ПОБЕДЫ!»\n\n17 марта, активисты «Движения Первых», волонтеры «Победы» и активисты ВПК «Соколы России» ГБПОУ ВО «БТПИТ» совместно с советниками директора по воспитанию и взаимодействию с детскими общественными объединениями С.В. Алехиной и Е.В. Сахаровой."
-                    }
+                    text.text = fullText.split("\n")[0]
                     showMoreText.text = "Показать ещё"
                     showMoreText.setTextColor(itemView.resources.getColor(android.R.color.holo_blue_dark))
                     isTextExpanded = false
                 }
             }
 
+            moreOptionsButton.setOnClickListener {
+                showOptionsDialog(postNumber)
+            }
+
             updateUI()
+        }
+
+        private fun showOptionsDialog(postNumber: Int) {
+            val options = arrayOf("Редактировать", "Удалить")
+            val dialog = AlertDialog.Builder(itemView.context)
+                .setTitle("Выберите действие")
+                .setItems(options) { _, which ->
+                    when (which) {
+                        0 -> showEditDialog(postNumber)
+                        1 -> showDeleteConfirmation(postNumber)
+                    }
+                }
+                .create()
+            
+            dialog.setOnShowListener {
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(itemView.context.getColor(android.R.color.holo_blue_light))
+                dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(itemView.context.getColor(android.R.color.holo_blue_light))
+            }
+            
+            dialog.show()
+        }
+
+        private fun showDeleteConfirmation(postNumber: Int) {
+            val dialog = AlertDialog.Builder(itemView.context)
+                .setTitle("Подтверждение")
+                .setMessage("Вы уверены, что хотите удалить этот пост?")
+                .setPositiveButton("Да") { _, _ ->
+                    deletePost(postNumber)
+                }
+                .setNegativeButton("Нет", null)
+                .create()
+            
+            dialog.setOnShowListener {
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(itemView.context.getColor(android.R.color.holo_blue_light))
+                dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(itemView.context.getColor(android.R.color.holo_blue_light))
+            }
+            
+            dialog.show()
+        }
+
+        private fun deletePost(postNumber: Int) {
+            Toast.makeText(itemView.context, "Пост удален", Toast.LENGTH_SHORT).show()
+        }
+
+        private fun showEditDialog(postNumber: Int) {
+            val currentText = if (isTextExpanded) text.text.toString() else fullText
+
+            val editText = EditText(itemView.context)
+            editText.setText(currentText)
+            editText.setLines(8)
+
+            val dialog = AlertDialog.Builder(itemView.context)
+                .setTitle("Редактировать пост")
+                .setView(editText)
+                .setPositiveButton("Сохранить") { _, _ ->
+                    val newText = editText.text.toString()
+                    fullText = newText
+                    text.text = if (isTextExpanded) newText else newText.split("\n")[0]
+                    Toast.makeText(itemView.context, "Пост отредактирован", Toast.LENGTH_SHORT).show()
+                }
+                .setNegativeButton("Отмена", null)
+                .create()
+            
+            dialog.setOnShowListener {
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(itemView.context.getColor(android.R.color.holo_blue_light))
+                dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(itemView.context.getColor(android.R.color.holo_blue_light))
+            }
+            
+            dialog.show()
         }
 
         private fun toggleLike() {

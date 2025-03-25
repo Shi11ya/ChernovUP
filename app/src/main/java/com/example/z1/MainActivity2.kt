@@ -7,6 +7,9 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.EditText
+import android.app.AlertDialog
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -60,6 +63,11 @@ class MainActivity2 : AppCompatActivity() {
     private lateinit var commentCountTextView3: TextView
     private lateinit var publicationDate3: TextView
 
+    // Добавляем переменные для хранения текста
+    private var fullText1 = "ЭСТАФЕТА ПАМЯТИ «ВО СЛАВУ ПОБЕДЫ!»\n\n17 марта, активисты «Движения Первых», волонтеры «Победы» и активисты ВПК «Соколы России» ГБПОУ ВО «БТПИТ» совместно с советниками директора по воспитанию и взаимодействию с детскими общественными объединениями С.В. Алехиной и Е.В. Сахаровой.\nПриняли участие в региональном проекте «Эстафета Памяти «Во славу Победы!» на мемориальном комплексе Памяти и Славы у Вечного огня."
+    private var fullText2 = "24 марта - день борьбы с туберкулезом.\n\nПо окончании занятия студенты пришли к выводу о том, что здоровый образ жизни, своевременное прохождение профилактических медицинских осмотров, а при необходимости своевременное и полноценное лечение является гарантом здоровья."
+    private var fullText3 = "9 марта 2025 года для студентов Борисоглебского техникума промышленных и информационных технологий была организованна и проведена профилактическая встреча с сотрудником ОГИБДД ОМВД России по г. Борисоглебск Семеновой О.А. В ходе профилактической беседы инспектор по пропаганде ОГИБДД ОМВД России по г. Борисоглебск Семенова Ольга Александровна рассказала студентам об основных причинах дорожно-транспортных происшествий, в том числе с участием несовершеннолетних. Предупредила о недопустимости нарушений Правил дорожного движения, об административной ответственности несовершеннолетних за нарушение ПДД, управление транспортным средством водителями, не имеющим права управления, а также в состоянии алкогольного или наркотического опьянения.\nСтуденты активно задавали вопросы, высказывали своё мнение, интересовались действующим законодательством."
+
     private var isTextExpanded1 = false
     private var isTextExpanded2 = false
     private var isTextExpanded3 = false
@@ -72,6 +80,10 @@ class MainActivity2 : AppCompatActivity() {
 
     private lateinit var avatarButton2: ImageButton
     private lateinit var avatarButton3: ImageButton
+
+    private lateinit var moreOptionsButton: ImageButton
+    private lateinit var moreOptionsButton2: ImageButton
+    private lateinit var moreOptionsButton3: ImageButton
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -148,47 +160,55 @@ class MainActivity2 : AppCompatActivity() {
             }
         }
 
+        moreOptionsButton = findViewById(R.id.more_options)
+        moreOptionsButton2 = findViewById(R.id.more_options2)
+        moreOptionsButton3 = findViewById(R.id.more_options3)
+
         showMoreText1.setOnClickListener {
             if (!isTextExpanded1) {
-                text1.text = text1.text.toString() + "\nПриняли участие в региональном\n" +
-                        "проекте «Эстафета Памяти «Во славу Победы!»\n" +
-                        "на мемориальном комплексе Памяти и Славы у Вечного огня."
+                text1.text = fullText1
                 showMoreText1.text = "Скрыть"
                 showMoreText1.setTextColor(resources.getColor(android.R.color.holo_blue_dark))
                 isTextExpanded1 = true
+                updateUI()
             } else {
-                text1.text = "ЭСТАФЕТА ПАМЯТИ «ВО СЛАВУ ПОБЕДЫ!»\n\n17 марта, активисты «Движения Первых», волонтеры «Победы» и активисты ВПК «Соколы России» ГБПОУ ВО «БТПИТ» совместно с советниками директора по воспитанию и взаимодействию с детскими общественными объединениями С.В. Алехиной и Е.В. Сахаровой."
+                text1.text = fullText1.split("\nПриняли участие в региональном")[0]
                 showMoreText1.text = "Показать ещё"
                 showMoreText1.setTextColor(resources.getColor(android.R.color.holo_blue_dark))
                 isTextExpanded1 = false
-            }
+                updateUI()
+            } 
         }
 
         showMoreText2.setOnClickListener {
             if (!isTextExpanded2) {
-                text2.text = text2.text.toString() + "\nПо окончании занятия студенты пришли к выводу о том, что здоровый образ жизни, своевременное прохождение профилактических медицинских осмотров, а при необходимости своевременное и полноценное лечение является гарантом здоровья."
+                text2.text = fullText2
                 showMoreText2.text = "Скрыть"
                 showMoreText2.setTextColor(resources.getColor(android.R.color.holo_blue_dark))
                 isTextExpanded2 = true
+                updateUI()
             } else {
-                text2.text = "24 марта - день борьбы с туберкулезом.\n\nВ преддверии дня борьбы с туберкулезом активисты волонтерского объединения \"Лучик света\" организовали и провели среди студентов техникума занятие на тему: «Просветись!». Обучающимся предлагалось выполнить упражнения «История возникновения туберкулеза», «Что вызывает туберкулёз», «Какие основные симптомы туберкулеза», «Миф или реальность»."
+                text2.text = fullText2.split("\nПо окончании занятия")[0]
                 showMoreText2.text = "Показать ещё"
                 showMoreText2.setTextColor(resources.getColor(android.R.color.holo_blue_dark))
                 isTextExpanded2 = false
+                updateUI()
             }
         }
 
         showMoreText3.setOnClickListener {
             if (!isTextExpanded3) {
-                text3.text = text3.text.toString() + "\nСтуденты активно задавали вопросы, высказывали своё мнение, интересовались действующим законодательством."
+                text3.text = fullText3
                 showMoreText3.text = "Скрыть"
                 showMoreText3.setTextColor(resources.getColor(android.R.color.holo_blue_dark))
                 isTextExpanded3 = true
+                updateUI()
             } else {
-                text3.text = "9 марта 2025 года для студентов Борисоглебского техникума промышленных и информационных технологий была организованна и проведена профилактическая встреча с сотрудником ОГИБДД ОМВД России по г. Борисоглебск Семеновой О.А.\n\nВ ходе профилактической беседы инспектор по пропаганде ОГИБДД ОМВД России по г. Борисоглебск Семенова Ольга Александровна рассказала студентам об основных причинах дорожно-транспортных происшествий, в том числе с участием несовершеннолетних. Предупредила о недопустимости нарушений Правил дорожного движения, об административной ответственности несовершеннолетних за нарушение ПДД, управление транспортным средством водителями, не имеющим права управления, а также в состоянии алкогольного или наркотического опьянения."
+                text3.text = fullText3.split("\nСтуденты активно")[0]
                 showMoreText3.text = "Показать ещё"
                 showMoreText3.setTextColor(resources.getColor(android.R.color.holo_blue_dark))
                 isTextExpanded3 = false
+                updateUI()
             }
         }
 
@@ -197,6 +217,7 @@ class MainActivity2 : AppCompatActivity() {
         publicationDate3.text = "25 марта в 09:45"
 
         setupListeners()
+        setupMoreOptionsButtons()
         updateUI()
     }
 
@@ -310,6 +331,106 @@ class MainActivity2 : AppCompatActivity() {
             }
             else -> count.toString()
         }
+    }
+
+    private fun setupMoreOptionsButtons() {
+        moreOptionsButton.setOnClickListener { showOptionsDialog(1) }
+        moreOptionsButton2.setOnClickListener { showOptionsDialog(2) }
+        moreOptionsButton3.setOnClickListener { showOptionsDialog(3) }
+    }
+
+    private fun showOptionsDialog(postNumber: Int) {
+        val options = arrayOf("Редактировать", "Удалить")
+        val dialog = AlertDialog.Builder(this)
+            .setTitle("Выберите действие")
+            .setItems(options) { _, which ->
+                when (which) {
+                    0 -> showEditDialog(postNumber)
+                    1 -> showDeleteConfirmation(postNumber)
+                }
+            }
+            .create()
+        
+        dialog.setOnShowListener {
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(getColor(android.R.color.holo_blue_light))
+            dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(getColor(android.R.color.holo_blue_light))
+        }
+        
+        dialog.show()
+    }
+
+    private fun showDeleteConfirmation(postNumber: Int) {
+        val dialog = AlertDialog.Builder(this)
+            .setTitle("Подтверждение")
+            .setMessage("Вы уверены, что хотите удалить этот пост?")
+            .setPositiveButton("Да") { _, _ ->
+                deletePost(postNumber)
+            }
+            .setNegativeButton("Нет", null)
+            .create()
+        
+        dialog.setOnShowListener {
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(getColor(android.R.color.holo_blue_light))
+            dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(getColor(android.R.color.holo_blue_light))
+        }
+        
+        dialog.show()
+    }
+
+    private fun deletePost(postNumber: Int) {
+        val postLayout = when (postNumber) {
+            1 -> findViewById<View>(R.id.post_layout1)
+            2 -> findViewById<View>(R.id.post_layout2)
+            3 -> findViewById<View>(R.id.post_layout3)
+            else -> null
+        }
+        
+        postLayout?.visibility = View.GONE
+        Toast.makeText(this, "Пост удален", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun showEditDialog(postNumber: Int) {
+        val currentText = when (postNumber) {
+            1 -> if (isTextExpanded1) text1.text.toString() else fullText1
+            2 -> if (isTextExpanded2) text2.text.toString() else fullText2
+            3 -> if (isTextExpanded3) text3.text.toString() else fullText3
+            else -> ""
+        }
+
+        val editText = EditText(this)
+        editText.setText(currentText)
+        editText.setLines(8)
+
+        val dialog = AlertDialog.Builder(this)
+            .setTitle("Редактировать пост")
+            .setView(editText)
+            .setPositiveButton("Сохранить") { _, _ ->
+                val newText = editText.text.toString()
+                when (postNumber) {
+                    1 -> {
+                        fullText1 = newText
+                        text1.text = if (isTextExpanded1) newText else newText.split("\nПриняли участие в региональном")[0]
+                    }
+                    2 -> {
+                        fullText2 = newText
+                        text2.text = if (isTextExpanded2) newText else newText.split("\nПо окончании занятия")[0]
+                    }
+                    3 -> {
+                        fullText3 = newText
+                        text3.text = if (isTextExpanded3) newText else newText.split("\nСтуденты активно")[0]
+                    }
+                }
+                Toast.makeText(this, "Пост отредактирован", Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton("Отмена", null)
+            .create()
+        
+        dialog.setOnShowListener {
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(getColor(android.R.color.holo_blue_light))
+            dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(getColor(android.R.color.holo_blue_light))
+        }
+        
+        dialog.show()
     }
 
     @Deprecated("Deprecated in Java")
