@@ -24,7 +24,6 @@ class MainActivity3 : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main3)
 
-        // Добавляем обработчик для кнопки "назад"
         findViewById<ImageButton>(R.id.back_button).setOnClickListener {
             startActivity(Intent(this, MainActivity2::class.java))
             finish()
