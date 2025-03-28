@@ -20,6 +20,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.widget.FrameLayout
 
+/**
+ * Активность профиля сообщества
+ * Отображает информацию о сообществе и список постов в виде прокручиваемого списка
+ */
 class MainActivity3 : AppCompatActivity() {
     private lateinit var postsRecyclerView: RecyclerView
     private lateinit var postsAdapter: PostsAdapter
@@ -29,15 +33,18 @@ class MainActivity3 : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main3)
 
+        // Настройка кнопки возврата
         findViewById<ImageButton>(R.id.back_button).setOnClickListener {
             finish()
         }
 
+        // Инициализация RecyclerView для отображения постов
         postsRecyclerView = findViewById(R.id.postsRecyclerView)
         postsRecyclerView.layoutManager = LinearLayoutManager(this)
         postsAdapter = PostsAdapter()
         postsRecyclerView.adapter = postsAdapter
 
+        // Настройка системных отступов
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -46,6 +53,10 @@ class MainActivity3 : AppCompatActivity() {
     }
 }
 
+/**
+ * Адаптер для отображения постов в RecyclerView
+ * Реализует бесконечную прокрутку постов
+ */
 class PostsAdapter : RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
     private val posts = listOf(1, 2, 3)
 
@@ -62,7 +73,12 @@ class PostsAdapter : RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
 
     override fun getItemCount(): Int = Int.MAX_VALUE
 
+    /**
+     * ViewHolder для отображения отдельного поста
+     * Управляет отображением и взаимодействием с элементами поста
+     */
     class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        // Счетчики для поста
         private var likeCount = 156
         private var commentCount = 43
         private var shareCount = 28
@@ -72,6 +88,7 @@ class PostsAdapter : RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
         private var fullText = ""
         private var videoUrl: String? = null
 
+        // UI элементы поста
         private lateinit var likeButton: ImageButton
         private lateinit var likeCountTextView: TextView
         private lateinit var shareButton: ImageButton
@@ -82,11 +99,25 @@ class PostsAdapter : RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
         private lateinit var showMoreText: TextView
         private lateinit var moreOptionsButton: ImageButton
         private lateinit var videoContainer: FrameLayout
-        private lateinit var videoThumbnail: ImageView
         private lateinit var playButton: ImageView
 
+        /**
+         * Привязка данных к UI элементам поста
+         * postNumber номер поста для отображения соответствующих данных
+         */
         fun bind(postNumber: Int) {
-            // Инициализация views
+            // Инициализация UI элементов
+            initializeViews()
+
+            // Установка данных в зависимости от номера поста
+            setupPostData(postNumber)
+
+            // Настройка обработчиков событий
+            setupEventListeners()
+        }
+
+        // Инициализация UI элементов
+        private fun initializeViews() {
             likeButton = itemView.findViewById(R.id.like_button)
             likeCountTextView = itemView.findViewById(R.id.like_count)
             commentCountTextView = itemView.findViewById(R.id.comment_count)
@@ -98,22 +129,25 @@ class PostsAdapter : RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
             moreOptionsButton = itemView.findViewById(R.id.more_options)
             videoContainer = itemView.findViewById(R.id.video_container)
             playButton = itemView.findViewById(R.id.play_button)
+        }
 
+        // Установка данных поста
+        private fun setupPostData(postNumber: Int) {
             when (postNumber) {
                 1 -> {
                     likeCount = 156
                     commentCount = 43
                     shareCount = 28
                     viewCount = 892
-                    fullText = "ЭСТАФЕТА ПАМЯТИ «ВО СЛАВУ ПОБЕДЫ!»\n\n17 марта, активисты «Движения Первых», волонтеры «Победы» и активисты ВПК «Соколы России» ГБПОУ ВО «БТПИТ» совместно с советниками директора по воспитанию и взаимодействию с детскими общественными объединениями С.В. Алехиной и Е.В. Сахаровой.\nПриняли участие в региональном проекте «Эстафета Памяти «Во славу Победы!» на мемориальном комплексе Памяти и Славы у Вечного огня."
-                    videoUrl = "https://www.youtube.com/watch?v=WhWc3b3KhnY"
+                    fullText = "ЭСТАФЕТА ПАМЯТИ «ВО СЛАВУ ПОБЕДЫ!»\n17 марта, активисты «Движения Первых», волонтеры «Победы» и активисты ВПК «Соколы России» ГБПОУ ВО «БТПИТ» совместно с советниками директора по воспитанию и взаимодействию с детскими общественными объединениями С.В. Алехиной и Е.В. Сахаровой.\nПриняли участие в региональном проекте «Эстафета Памяти «Во славу Победы!» на мемориальном комплексе Памяти и Славы у Вечного огня."
+                    videoUrl = null
                 }
                 2 -> {
                     likeCount = 324
                     commentCount = 87
                     shareCount = 65
                     viewCount = 2345
-                    fullText = "24 марта - день борьбы с туберкулезом.\n\nВ преддверии дня борьбы с туберкулезом активисты волонтерского объединения \"Лучик света\" организовали и провели среди студентов техникума занятие на тему: «Просветись!». Обучающимся предлагалось выполнить упражнения «История возникновения туберкулеза», «Что вызывает туберкулёз», «Какие основные симптомы туберкулеза», «Миф или реальность».\nПо окончании занятия студенты пришли к выводу о том, что здоровый образ жизни, своевременное прохождение профилактических медицинских осмотров, а при необходимости своевременное и полноценное лечение является гарантом здоровья."
+                    fullText = "24 марта - день борьбы с туберкулезом.\nВ преддверии дня борьбы с туберкулезом активисты волонтерского объединения \"Лучик света\" организовали и провели среди студентов техникума занятие на тему: «Просветись!». Обучающимся предлагалось выполнить упражнения «История возникновения туберкулеза», «Что вызывает туберкулёз», «Какие основные симптомы туберкулеза», «Миф или реальность».\nПо окончании занятия студенты пришли к выводу о том, что здоровый образ жизни, своевременное прохождение профилактических медицинских осмотров, а при необходимости своевременное и полноценное лечение является гарантом здоровья."
                     videoUrl = null
                 }
                 3 -> {
@@ -121,11 +155,20 @@ class PostsAdapter : RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
                     commentCount = 234
                     shareCount = 123
                     viewCount = 4567
-                    fullText = "9 марта 2025 года для студентов Борисоглебского техникума промышленных и информационных технологий была организованна и проведена профилактическая встреча с сотрудником ОГИБДД ОМВД России по г. Борисоглебск Семеновой О.А.\n\nВ ходе профилактической беседы инспектор по пропаганде ОГИБДД ОМВД России по г. Борисоглебск Семенова Ольга Александровна рассказала студентам об основных причинах дорожно-транспортных происшествий, в том числе с участием несовершеннолетних. Предупредила о недопустимости нарушений Правил дорожного движения, об административной ответственности несовершеннолетних за нарушение ПДД, управление транспортным средством водителями, не имеющим права управления, а также в состоянии алкогольного или наркотического опьянения.\nСтуденты активно задавали вопросы, высказывали своё мнение, интересовались действующим законодательством."
+                    fullText = "9 марта 2025 года для студентов Борисоглебского техникума промышленных и информационных технологий была организованна и проведена профилактическая встреча с сотрудником ОГИБДД ОМВД России по г. Борисоглебск Семеновой О.А.\nВ ходе профилактической беседы инспектор по пропаганде ОГИБДД ОМВД России по г. Борисоглебск Семенова Ольга Александровна рассказала студентам об основных причинах дорожно-транспортных происшествий, в том числе с участием несовершеннолетних. Предупредила о недопустимости нарушений Правил дорожного движения, об административной ответственности несовершеннолетних за нарушение ПДД, управление транспортным средством водителями, не имеющим права управления, а также в состоянии алкогольного или наркотического опьянения.\nСтуденты активно задавали вопросы, высказывали своё мнение, интересовались действующим законодательством."
                     videoUrl = "https://www.youtube.com/watch?v=Kh_haVVhdjA"
                 }
             }
 
+            // Настройка отображения видео
+            setupVideoDisplay(postNumber)
+
+            // Настройка UI элементов поста
+            setupPostUI(postNumber)
+        }
+
+        // Настройка отображения видео
+        private fun setupVideoDisplay(postNumber: Int) {
             if (videoUrl != null) {
                 videoContainer.visibility = View.VISIBLE
                 videoContainer.setOnClickListener { openVideo(videoUrl!!) }
@@ -133,7 +176,10 @@ class PostsAdapter : RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
             } else {
                 videoContainer.visibility = View.GONE
             }
+        }
 
+        // Настройка UI элементов поста
+        private fun setupPostUI(postNumber: Int) {
             val avatarButton = itemView.findViewById<ImageButton>(R.id.avatar)
             avatarButton.setBackgroundResource(R.drawable.logo)
 
@@ -166,7 +212,10 @@ class PostsAdapter : RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
             }
 
             text.text = if (isTextExpanded) fullText else fullText.split("\n")[0]
+        }
 
+        // Настройка обработчиков событий
+        private fun setupEventListeners() {
             likeButton.setOnClickListener {
                 toggleLike()
             }
@@ -177,34 +226,38 @@ class PostsAdapter : RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
             }
 
             showMoreText.setOnClickListener {
-                if (!isTextExpanded) {
-                    text.text = fullText
-                    showMoreText.text = "Скрыть"
-                    showMoreText.setTextColor(itemView.resources.getColor(android.R.color.holo_blue_dark))
-                    isTextExpanded = true
-                } else {
-                    text.text = fullText.split("\n")[0]
-                    showMoreText.text = "Показать ещё"
-                    showMoreText.setTextColor(itemView.resources.getColor(android.R.color.holo_blue_dark))
-                    isTextExpanded = false
-                }
+                toggleTextExpansion()
             }
 
             moreOptionsButton.setOnClickListener {
-                showOptionsDialog(postNumber)
+                showOptionsDialog()
             }
-
-            updateUI()
         }
 
-        private fun showOptionsDialog(postNumber: Int) {
+        // Переключение состояния развернутости текста
+        private fun toggleTextExpansion() {
+            if (!isTextExpanded) {
+                text.text = fullText
+                showMoreText.text = "Скрыть"
+                showMoreText.setTextColor(itemView.resources.getColor(android.R.color.holo_blue_dark))
+                isTextExpanded = true
+            } else {
+                text.text = fullText.split("\n")[0]
+                showMoreText.text = "Показать ещё"
+                showMoreText.setTextColor(itemView.resources.getColor(android.R.color.holo_blue_dark))
+                isTextExpanded = false
+            }
+        }
+
+        // Отображение диалога с опциями
+        private fun showOptionsDialog() {
             val options = arrayOf("Редактировать", "Удалить")
             val dialog = AlertDialog.Builder(itemView.context)
                 .setTitle("Выберите действие")
                 .setItems(options) { _, which ->
                     when (which) {
-                        0 -> showEditDialog(postNumber)
-                        1 -> showDeleteConfirmation(postNumber)
+                        0 -> showEditDialog()
+                        1 -> showDeleteConfirmation()
                     }
                 }
                 .create()
@@ -217,12 +270,13 @@ class PostsAdapter : RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
             dialog.show()
         }
 
-        private fun showDeleteConfirmation(postNumber: Int) {
+        // Отображение диалога подтверждения удаления
+        private fun showDeleteConfirmation() {
             val dialog = AlertDialog.Builder(itemView.context)
                 .setTitle("Подтверждение")
                 .setMessage("Вы уверены, что хотите удалить этот пост?")
                 .setPositiveButton("Да") { _, _ ->
-                    deletePost(postNumber)
+                    deletePost()
                 }
                 .setNegativeButton("Нет", null)
                 .create()
@@ -235,11 +289,13 @@ class PostsAdapter : RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
             dialog.show()
         }
 
-        private fun deletePost(postNumber: Int) {
+        // Удаление поста
+        private fun deletePost() {
             Toast.makeText(itemView.context, "Пост удален", Toast.LENGTH_SHORT).show()
         }
 
-        private fun showEditDialog(postNumber: Int) {
+        // Отображение диалога редактирования
+        private fun showEditDialog() {
             val currentText = if (isTextExpanded) text.text.toString() else fullText
 
             val editText = EditText(itemView.context)
@@ -266,6 +322,7 @@ class PostsAdapter : RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
             dialog.show()
         }
 
+        // Переключение состояния лайка
         private fun toggleLike() {
             isLiked = !isLiked
             if (isLiked) {
@@ -278,6 +335,7 @@ class PostsAdapter : RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
             updateUI()
         }
 
+        // Обновление UI элементов
         private fun updateUI() {
             likeCountTextView.text = formatCount(likeCount)
             commentCountTextView.text = formatCount(commentCount)
@@ -285,6 +343,7 @@ class PostsAdapter : RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
             viewCountTextView.text = formatCount(viewCount)
         }
 
+        // Форматирование чисел для отображения (K, M)
         private fun formatCount(count: Int): String {
             return when {
                 count >= 1_000_000 -> {
@@ -312,6 +371,7 @@ class PostsAdapter : RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
             }
         }
 
+        // Открытие видео
         private fun openVideo(url: String) {
             try {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))

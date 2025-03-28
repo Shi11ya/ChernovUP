@@ -14,7 +14,8 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:background="#E3F2FD">
-    <!-- 1пост -->
+
+    <!-- Первый пост -->
     <LinearLayout
         android:id="@+id/post_layout1"
         android:layout_width="match_parent"
@@ -25,6 +26,7 @@
         android:padding="8dp"
         android:layout_marginBottom="16dp">
 
+        <!-- Верхняя панель поста с аватаром, названием и кнопкой опций -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,6 +48,7 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
+                <!-- Название сообщества -->
                 <TextView
                     android:id="@+id/author_name"
                     android:layout_width="match_parent"
@@ -55,6 +58,7 @@
                     android:textSize="16sp"
                     android:textStyle="normal"/>
 
+                <!-- Дата публикации -->
                 <TextView
                     android:id="@+id/publication_date"
                     android:layout_width="wrap_content"
@@ -65,6 +69,7 @@
                     android:layout_marginTop="4dp"/>
             </LinearLayout>
 
+            <!-- Кнопка дополнительных опций -->
             <ImageButton
                 android:id="@+id/more_options"
                 android:layout_width="wrap_content"
@@ -74,6 +79,7 @@
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
         </LinearLayout>
 
+        <!-- Текст поста -->
         <TextView
             android:id="@+id/post_description1"
             android:layout_width="match_parent"
@@ -88,6 +94,7 @@
             android:textColor="@android:color/black"
             android:layout_marginBottom="0dp"/>
 
+        <!-- Кнопка "Показать ещё" -->
         <TextView
             android:id="@+id/show_more_text1"
             android:layout_width="wrap_content"
@@ -97,6 +104,7 @@
             android:textColor="#2196F3"
             android:layout_marginBottom="8dp"/>
 
+        <!-- Изображение поста -->
         <ImageView
             android:id="@+id/post_image"
             android:layout_width="match_parent"
@@ -105,6 +113,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/krasavciki" />
 
+        <!-- Панель действий (лайки, комментарии, репосты) -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -113,6 +122,7 @@
             android:gravity="center_vertical"
             android:layout_marginTop="8dp">
 
+            <!-- Кнопка лайка и счетчик -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -137,6 +147,7 @@
 
             </LinearLayout>
 
+            <!-- Кнопка комментариев и счетчик -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -160,6 +171,7 @@
                     android:layout_marginStart="8dp"/>
             </LinearLayout>
 
+            <!-- Кнопка репоста и счетчик -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -183,6 +195,7 @@
                     android:layout_marginStart="8dp"/>
             </LinearLayout>
 
+            <!-- Кнопка просмотров и счетчик -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -211,7 +224,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- 2пост -->
+    <!-- Второй пост -->
     <LinearLayout
         android:id="@+id/post_layout2"
         android:layout_width="match_parent"
@@ -222,6 +235,7 @@
         android:padding="8dp"
         android:layout_marginBottom="16dp">
 
+        <!-- Верхняя панель поста с аватаром, названием и кнопкой опций -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -229,6 +243,7 @@
             android:layout_marginBottom="8dp"
             android:layout_marginTop="30dp">
 
+            <!-- Аватар сообщества -->
             <ImageButton
                 android:id="@+id/avatar2"
                 android:layout_width="71dp"
@@ -237,12 +252,14 @@
                 android:background="@drawable/logo"
                 android:contentDescription="TODO" />
 
+            <!-- Информация о сообществе -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
+                <!-- Название сообщества -->
                 <TextView
                     android:id="@+id/author_name2"
                     android:layout_width="match_parent"
@@ -252,6 +269,7 @@
                     android:textSize="16sp"
                     android:textStyle="normal"/>
 
+                <!-- Дата публикации -->
                 <TextView
                     android:id="@+id/publication_date2"
                     android:layout_width="wrap_content"
@@ -262,6 +280,7 @@
                     android:layout_marginTop="4dp"/>
             </LinearLayout>
 
+            <!-- Кнопка дополнительных опций -->
             <ImageButton
                 android:id="@+id/more_options2"
                 android:layout_width="wrap_content"
@@ -271,6 +290,7 @@
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
         </LinearLayout>
 
+        <!-- Текст поста -->
         <TextView
             android:id="@+id/post_description2"
             android:layout_width="match_parent"
@@ -280,6 +300,7 @@
             android:textColor="@android:color/black"
             android:layout_marginBottom="0dp"/>
 
+        <!-- Кнопка "Показать ещё" -->
         <TextView
             android:id="@+id/show_more_text2"
             android:layout_width="wrap_content"
@@ -289,6 +310,7 @@
             android:textColor="#2196F3"
             android:layout_marginBottom="8dp"/>
 
+        <!-- Изображение поста -->
         <ImageView
             android:id="@+id/post_image2"
             android:layout_width="match_parent"
@@ -297,6 +319,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/krasava2" />
 
+        <!-- Панель действий (лайки, комментарии, репосты) -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -305,6 +328,7 @@
             android:gravity="center_vertical"
             android:layout_marginTop="8dp">
 
+            <!-- Кнопка лайка и счетчик -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -329,6 +353,7 @@
 
             </LinearLayout>
 
+            <!-- Кнопка комментариев и счетчик -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -352,6 +377,7 @@
                     android:layout_marginStart="8dp"/>
             </LinearLayout>
 
+            <!-- Кнопка репоста и счетчик -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -375,6 +401,7 @@
                     android:layout_marginStart="8dp"/>
             </LinearLayout>
 
+            <!-- Кнопка просмотров и счетчик -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -403,7 +430,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- 3пост -->
+    <!-- Третий пост -->
     <LinearLayout
         android:id="@+id/post_layout3"
         android:layout_width="match_parent"
@@ -414,6 +441,7 @@
         android:padding="8dp"
         android:layout_marginBottom="16dp">
 
+        <!-- Верхняя панель поста с аватаром, названием и кнопкой опций -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -421,6 +449,7 @@
             android:layout_marginBottom="8dp"
             android:layout_marginTop="30dp">
 
+            <!-- Аватар сообщества -->
             <ImageButton
                 android:id="@+id/avatar3"
                 android:layout_width="71dp"
@@ -429,12 +458,14 @@
                 android:background="@drawable/logo"
                 android:contentDescription="TODO" />
 
+            <!-- Информация о сообществе -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
+                <!-- Название сообщества -->
                 <TextView
                     android:id="@+id/author_name3"
                     android:layout_width="match_parent"
@@ -444,6 +475,7 @@
                     android:textSize="16sp"
                     android:textStyle="normal"/>
 
+                <!-- Дата публикации -->
                 <TextView
                     android:id="@+id/publication_date3"
                     android:layout_width="wrap_content"
@@ -454,6 +486,7 @@
                     android:layout_marginTop="4dp"/>
             </LinearLayout>
 
+            <!-- Кнопка дополнительных опций -->
             <ImageButton
                 android:id="@+id/more_options3"
                 android:layout_width="wrap_content"
@@ -463,6 +496,7 @@
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
         </LinearLayout>
 
+        <!-- Текст поста -->
         <TextView
             android:id="@+id/post_description3"
             android:layout_width="match_parent"
@@ -474,6 +508,7 @@
             android:textColor="@android:color/black"
             android:layout_marginBottom="0dp"/>
 
+        <!-- Кнопка "Показать ещё" -->
         <TextView
             android:id="@+id/show_more_text3"
             android:layout_width="wrap_content"
@@ -483,6 +518,7 @@
             android:textColor="#2196F3"
             android:layout_marginBottom="8dp"/>
 
+        <!-- Изображение поста -->
         <ImageView
             android:id="@+id/post_image3"
             android:layout_width="match_parent"
@@ -491,6 +527,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/krasava3" />
 
+        <!-- Панель действий (лайки, комментарии, репосты) -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -499,6 +536,7 @@
             android:gravity="center_vertical"
             android:layout_marginTop="8dp">
 
+            <!-- Кнопка лайка и счетчик -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -523,6 +561,7 @@
 
             </LinearLayout>
 
+            <!-- Кнопка комментариев и счетчик -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -546,6 +585,7 @@
                     android:layout_marginStart="8dp"/>
             </LinearLayout>
 
+            <!-- Кнопка репоста и счетчик -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -569,6 +609,7 @@
                     android:layout_marginStart="8dp"/>
             </LinearLayout>
 
+            <!-- Кнопка просмотров и счетчик -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

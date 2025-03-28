@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Макет отдельного поста для использования в RecyclerView -->
+<!-- Основной контейнер поста с белым фоном и тенью -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,6 +12,7 @@
     android:padding="8dp"
     android:layout_marginBottom="16dp">
 
+    <!-- Верхняя панель поста с информацией об авторе -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,20 +20,23 @@
         android:layout_marginBottom="8dp"
         android:layout_marginTop="30dp">
 
+        <!-- Аватар автора поста -->
         <ImageButton
             android:id="@+id/avatar"
             android:layout_width="71dp"
             android:layout_height="70dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/logo"
-            android:contentDescription="TODO" />
+            android:contentDescription="Аватар автора" />
 
+        <!-- Контейнер с информацией об авторе -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
 
+            <!-- Имя автора поста -->
             <TextView
                 android:id="@+id/author_name"
                 android:layout_width="match_parent"
@@ -40,6 +46,7 @@
                 android:textSize="16sp"
                 android:textStyle="normal"/>
 
+            <!-- Дата публикации поста -->
             <TextView
                 android:id="@+id/publication_date"
                 android:layout_width="wrap_content"
@@ -50,6 +57,7 @@
                 android:layout_marginTop="4dp"/>
         </LinearLayout>
 
+        <!-- Кнопка дополнительных опций поста -->
         <ImageButton
             android:id="@+id/more_options"
             android:layout_width="wrap_content"
@@ -59,6 +67,7 @@
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
     </LinearLayout>
 
+    <!-- Текст поста -->
     <TextView
         android:id="@+id/post_description"
         android:layout_width="match_parent"
@@ -68,6 +77,7 @@
         android:textColor="@android:color/black"
         android:layout_marginBottom="0dp"/>
 
+    <!-- Кнопка для разворачивания/сворачивания текста -->
     <TextView
         android:id="@+id/show_more_text"
         android:layout_width="wrap_content"
@@ -77,6 +87,7 @@
         android:textColor="#2196F3"
         android:layout_marginBottom="8dp"/>
 
+    <!-- Изображение поста -->
     <ImageView
         android:id="@+id/post_image"
         android:layout_width="match_parent"
@@ -85,6 +96,7 @@
         android:scaleType="centerCrop"
         android:src="@drawable/krasavciki" />
 
+    <!-- Контейнер для видео (по умолчанию скрыт) -->
     <FrameLayout
         android:id="@+id/video_container"
         android:layout_width="match_parent"
@@ -93,6 +105,7 @@
         android:layout_marginBottom="8dp"
         android:visibility="gone">
 
+        <!-- Кнопка воспроизведения видео -->
         <ImageView
             android:id="@+id/play_button"
             android:layout_width="64dp"
@@ -103,6 +116,7 @@
             android:contentDescription="Воспроизвести видео"/>
     </FrameLayout>
 
+    <!-- Панель действий с кнопками лайков, комментариев и репостов -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -111,6 +125,7 @@
         android:gravity="center_vertical"
         android:layout_marginTop="8dp">
 
+        <!-- Кнопка лайка и счетчик -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -135,6 +150,7 @@
 
         </LinearLayout>
 
+        <!-- Кнопка комментариев и счетчик -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -158,6 +174,7 @@
                 android:layout_marginStart="8dp"/>
         </LinearLayout>
 
+        <!-- Кнопка репоста и счетчик -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -181,6 +198,7 @@
                 android:layout_marginStart="8dp"/>
         </LinearLayout>
 
+        <!-- Кнопка просмотров и счетчик -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
