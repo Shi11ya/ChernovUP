@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.widget.FrameLayout
 import com.example.z1.fragments.PostDetailFragment
 import com.example.z1.model.Post
-import com.example.z1.repository.JsonPostRepository
+import com.example.z1.repository.SQLitePostRepository
 
 /**
  * Активность профиля сообщества
@@ -30,7 +30,7 @@ import com.example.z1.repository.JsonPostRepository
 class MainActivity3 : AppCompatActivity() {
     private lateinit var postsRecyclerView: RecyclerView
     private lateinit var postsAdapter: PostsAdapter
-    private lateinit var repository: JsonPostRepository
+    private lateinit var repository: SQLitePostRepository
     private lateinit var overlayBackground: View
     private lateinit var popupPostContainer: View
     private lateinit var closeButton: ImageButton
@@ -43,7 +43,7 @@ class MainActivity3 : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main3)
 
-        repository = JsonPostRepository(this)
+        repository = SQLitePostRepository(this)
 
         // Инициализация views
         overlayBackground = findViewById(R.id.overlay_background)
@@ -379,7 +379,7 @@ class MainActivity3 : AppCompatActivity() {
 class PostsAdapter(
     private var posts: List<Post>,
     private val onPostClick: (Post, Boolean) -> Unit,
-    private val repository: JsonPostRepository,
+    private val repository: SQLitePostRepository,
     private val recyclerView: RecyclerView
 ) : RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
 
